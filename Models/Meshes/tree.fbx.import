@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://8p518eesrbnx"
-path="res://.godot/imported/tree.fbx-4080965a4f03134246bc801540b25b3c.scn"
+path="res://.godot/imported/tree.fbx-d83024f2f7c31ad790cdc41526319420.scn"
 
 [deps]
 
-source_file="res://tree.fbx"
-dest_files=["res://.godot/imported/tree.fbx-4080965a4f03134246bc801540b25b3c.scn"]
+source_file="res://Models/Meshes/tree.fbx"
+dest_files=["res://.godot/imported/tree.fbx-d83024f2f7c31ad790cdc41526319420.scn"]
 
 [params]
 
@@ -25,7 +25,7 @@ meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
-skins/use_named_skins=true
+skins/use_named_skins=false
 animation/import=true
 animation/fps=30
 animation/trimming=true
@@ -42,4 +42,4 @@ _subresources={
 }
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+fbx/embedded_image_handling=2

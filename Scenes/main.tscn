@@ -1,0 +1,67 @@
+[gd_scene load_steps=14 format=3 uid="uid://tlcyy14vi2y"]
+
+[ext_resource type="Script" uid="uid://catjdk8icpe3d" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://mpu0ajf2uhqc" path="res://Scenes/Tree.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://i1gf5p6wfkqt" path="res://Scenes/player.tscn" id="3_21xkr"]
+[ext_resource type="PackedScene" uid="uid://c6s8vbtugr8js" path="res://Scenes/Enemy.tscn" id="4_6bp64"]
+[ext_resource type="PackedScene" uid="uid://djf44ilkfcuds" path="res://Scenes/pause_menu.tscn" id="5_kry3j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h2yge"]
+gradient = SubResource("Gradient_0xm2m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+resource_name = "groundMap"
+render_priority = 1
+albedo_color = Color(0.215686, 0.239216, 1, 1)
+albedo_texture = SubResource("GradientTexture1D_h2yge")
+uv1_scale = Vector3(20, 20, 20)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+material = SubResource("StandardMaterial3D_1bvp3")
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_1bvp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+shading_mode = 0
+albedo_color = Color(0.172549, 0.27451, 1, 1)
+albedo_texture = SubResource("CurveXYZTexture_1bvp3")
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_jjvhh")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.07617, 0)
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_0xm2m")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0869808, 0)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_h2yge")
+surface_material_override/0 = SubResource("StandardMaterial3D_lquwl")
+
+[node name="Tree" parent="." instance=ExtResource("2_kry3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.51563, -0.76062, 8.17822)
+
+[node name="Player" parent="." instance=ExtResource("3_21xkr")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_6bp64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+
+[node name="pauseMenu" parent="." instance=ExtResource("5_kry3j")]
+
+[connection signal="continueGame" from="pauseMenu" to="." method="_on_pause_menu_continue_game"]

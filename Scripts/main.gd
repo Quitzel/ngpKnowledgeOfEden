@@ -6,29 +6,42 @@ var mouseLock = true
 const adsFov = 15
 const stdFov = 75
 
+
+
+
+
 func _ready():
-	$Player.rotation = Vector3(0,0,0)
+	get_viewport().warp_mouse(get_viewport().size/2)
+	pass
 
 
 
 func _physics_process(delta: float):
-	if Input.is_action_just_pressed("aimDownSights"):
+	if Input.is_action_just_pressed("aimDownSights") && mouseLock:
 		Engine.time_scale = 0.1 # Bullet Time
 		$Player.setCamFOV(adsFov) # Camera focuses in for ADS
 		mouseSensitivity *= 4 # This allows for more precise movements when ADSing
 		$Player.gunPosADS()
-	if Input.is_action_just_released("aimDownSights"):
+	if Input.is_action_just_released("aimDownSights") && mouseLock:
 		Engine.time_scale = 1 # Normal Time
 		$Player.setCamFOV(stdFov) # Camera focuses out for normal movement
 		mouseSensitivity /= 4 # This changes us back to standard sensitivity when not ADSing
 		$Player.gunPosStd()
-	if Input.is_action_just_pressed("fireGun"):
 		
+	if Input.is_action_just_released("fireGun"):
+		$Player.fireShot()
 		if $Player.hasBullet:
-			$Player.hasBullet = false
-			var target = $Player.fireShot()
-			if target != null && target.hasMethod("destroy"):
-				target.destroy()
+			if $Player/Camera3D/RayCast3D.is_colliding():
+				var target = $Player/Camera3D/RayCast3D.get_collider()
+				if target.is_in_group("Enemy") && target.has_method("destroy"):
+					target.destroy()
+					target.free()
+				else:
+					$Player.hasBullet = false
+			else:
+				$Player.hasBullet = false
+		if !$Player.hasBullet:
+			$Player/Camera3D/Gun.hide()
 	if Input.is_action_just_pressed("Crouch"):
 		$Player.scale.y = .5
 		$Player.SPEED /= 3
@@ -50,7 +63,6 @@ func _physics_process(delta: float):
 			mouseSensitivity = 450 * $pauseMenu.sensitivity
 			Engine.time_scale = 1.0
 		get_viewport().warp_mouse(get_viewport().size/2)
-	var direction = Vector3.ZERO
 	
 	
 

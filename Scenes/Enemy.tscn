@@ -1,42 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6s8vbtugr8js"]
+[gd_scene load_steps=4 format=3 uid="uid://c6s8vbtugr8js"]
 
-[ext_resource type="Script" uid="uid://dmmrsf2qqm0gr" path="res://Scripts/enemy.gd" id="1_tt7e2"]
+[ext_resource type="PackedScene" uid="uid://fbv5o5ierbrv" path="res://Angel_Animated.fbx" id="1_m1htj"]
+[ext_resource type="Script" uid="uid://dmmrsf2qqm0gr" path="res://Scripts/enemy.gd" id="1_wovta"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gqquq"]
-radius = 0.75
+[sub_resource type="SphereShape3D" id="SphereShape3D_wovta"]
+radius = 1.5
 
-[sub_resource type="GDScript" id="GDScript_tt7e2"]
-script/source = "extends CollisionShape3D
+[node name="Enemy" type="AnimatableBody3D"]
+script = ExtResource("1_wovta")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_wovta")
+debug_color = Color(0.34902, 0.517647, 0.898039, 0.866667)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+[node name="Angel_Animated" parent="." instance=ExtResource("1_m1htj")]
 
-func destroy():
-	get_parent_node_3d().destroy()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[node name="Ring_01" parent="Angel_Animated" index="1"]
+transform = Transform3D(100, 1.50364e-07, 2.0141e-07, -2.51347e-07, 59.8234, 80.1321, -2.22045e-14, -80.1321, 59.8234, 0, 1.39798, 0)
 
-[sub_resource type="SphereMesh" id="SphereMesh_tt7e2"]
-radius = 0.7
-height = 1.4
+[node name="Ring_02" parent="Angel_Animated" index="2"]
+transform = Transform3D(1, -1.25674e-09, 0, 1.25674e-09, 1, 0, 0, 0, 1, 0, 1.39798, 0)
 
-[node name="Enemy" type="CharacterBody3D"]
-collision_layer = 3
-collision_mask = 3
-motion_mode = 1
-script = ExtResource("1_tt7e2")
+[node name="Ring_03" parent="Angel_Animated" index="3"]
+transform = Transform3D(1.91069e-13, -4.37114e-06, 100, -100, -4.37114e-06, 0, 4.37114e-06, -100, -4.37114e-06, -7.41333e-09, 1.39798, 3.24047e-16)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("SphereShape3D_gqquq")
-script = SubResource("GDScript_tt7e2")
+[node name="AnimationPlayer" parent="Angel_Animated" index="10"]
+autoplay = "Take 001"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-mesh = SubResource("SphereMesh_tt7e2")
-
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[editable path="Angel_Animated"]

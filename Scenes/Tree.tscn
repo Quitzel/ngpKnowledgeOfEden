@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://mpu0ajf2uhqc"]
+[gd_scene load_steps=9 format=3 uid="uid://mpu0ajf2uhqc"]
 
-[ext_resource type="PackedScene" uid="uid://8p518eesrbnx" path="res://Models/Meshes/tree.fbx" id="1_nbyt5"]
-[ext_resource type="Texture2D" uid="uid://imrpsjfuebyi" path="res://Models/Textures/tree_0.png" id="2_72j6q"]
-[ext_resource type="Texture2D" uid="uid://camsc72f51euq" path="res://Models/Textures/tree_1.png" id="3_fxwtr"]
+[ext_resource type="PackedScene" uid="uid://dq3bw7pcqen27" path="res://Models/Meshes/tree.fbx" id="1_nbyt5"]
+[ext_resource type="Texture2D" uid="uid://imrpsjfuebyi" path="res://Models/Textures/tree_0.png" id="2_0suky"]
+[ext_resource type="Texture2D" uid="uid://camsc72f51euq" path="res://Models/Textures/tree_1.png" id="3_0e63j"]
 
 [sub_resource type="PointMesh" id="PointMesh_nbyt5"]
 
@@ -12,37 +12,11 @@
 height = 11.0611
 radius = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yv26"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb0yx"]
+albedo_texture = ExtResource("2_0suky")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0j8u"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj3bj"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gsb32"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p3we6"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt5bm"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70a00"]
-shading_mode = 0
-albedo_texture = ExtResource("2_72j6q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpn3v"]
-shading_mode = 0
-albedo_texture = ExtResource("3_fxwtr")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtd5e"]
+albedo_texture = ExtResource("3_0e63j")
 
 [node name="Tree" type="MeshInstance3D"]
 layers = 3
@@ -60,28 +34,28 @@ shape = SubResource("CylinderShape3D_dn7q5")
 [node name="tree" parent="." instance=ExtResource("1_nbyt5")]
 transform = Transform3D(-0.967024, 0, 0.254687, 0, 1, 0, -0.254687, 0, -0.967024, 0.578865, 0, 0.360033)
 
-[node name="Cube" parent="tree" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3yv26")
+[node name="Cube_001" parent="tree" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="Cube_001" parent="tree" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_n0j8u")
+[node name="Cube_002" parent="tree" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="Cube_002" parent="tree" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_mj3bj")
+[node name="Cube_003" parent="tree" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="Cube_003" parent="tree" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_gsb32")
+[node name="Cube_004" parent="tree" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="Cube_004" parent="tree" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_p3we6")
+[node name="Cube_005" parent="tree" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="Cube_005" parent="tree" index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_wt5bm")
+[node name="Cube_006" parent="tree" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="Cube_006" parent="tree" index="6"]
-surface_material_override/0 = SubResource("StandardMaterial3D_70a00")
+[node name="Cube_007" parent="tree" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cb0yx")
 
-[node name="TREE" parent="tree" index="8"]
-surface_material_override/0 = SubResource("StandardMaterial3D_gpn3v")
+[node name="TREE" parent="tree" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rtd5e")
 
 [editable path="tree"]
